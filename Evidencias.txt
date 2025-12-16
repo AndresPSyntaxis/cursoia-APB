@@ -1,0 +1,92 @@
+Evidencias de Ejecución de Instrucciones - DevSecOpsDemo
+
+Fecha: 16 de diciembre de 2025
+
+Este archivo documenta las contribuciones aplicadas por la IA (GitHub Copilot), las ejecuciones realizadas y las pruebas/test ejecutadas durante la implementación del proyecto DevSecOpsDemo basado en las instrucciones del archivo Prompt.txt.
+
+---
+
+## Contribuciones Aplicadas de la IA
+
+La IA asistió en la creación completa del proyecto, incluyendo:
+
+1. **Creación de la Estructura del Proyecto:**
+   - Generó una solución .NET llamada DevSecOpsDemo.
+   - Creó un proyecto Minimal API (DevSecOpsDemo.Api) con .NET 10.0.
+   - Configuró OpenAPI/Swagger agregando el paquete Swashbuckle.AspNetCore y habilitándolo en Program.cs.
+
+2. **Implementación de Endpoints REST:**
+   - GET /api/health: Devuelve un JSON con {"status": "ok"} y código HTTP 200.
+   - POST /api/suma: Recibe un JSON con campos "A" y "B" (enteros), valida la entrada, calcula la suma y devuelve {"result": suma} con código 200. Si la entrada es inválida o nula, devuelve código 400 con {"error": "Invalid request body"}.
+
+3. **Proyecto de Pruebas:**
+   - Creó un proyecto de pruebas xUnit (DevSecOpsDemo.Tests).
+   - Agregó referencia al proyecto API y el paquete Microsoft.AspNetCore.Mvc.Testing para pruebas de integración.
+   - Implementó pruebas usando WebApplicationFactory para simular la API en memoria.
+
+4. **Gestión de Git y Repositorio:**
+   - Realizó commits significativos: "API creada" (incluyendo código fuente y binarios) y "Pipeline de CI agregada".
+   - Ejecutó push al repositorio remoto en GitHub (https://github.com/AndresPSyntaxis/cursoia-APB.git).
+
+5. **Pipeline de CI:**
+   - Creó el directorio .github/workflows/.
+   - Diseñó y generó el archivo ci.yml con un workflow que se ejecuta en push/PR a la rama main, usando Ubuntu, .NET 10.0, restaurando dependencias, compilando en Release y ejecutando pruebas.
+
+6. **Validaciones y Correcciones:**
+   - Ajustó el código para manejar errores de deserialización JSON (e.g., body vacío o inválido).
+   - Corrigió referencias y namespaces para compatibilidad con WebApplicationFactory en minimal API.
+   - Ejecutó pruebas iterativamente hasta que todas pasaron.
+
+---
+
+## Ejecuciones Realizadas
+
+Las siguientes ejecuciones de comandos fueron realizadas por la IA en el terminal (PowerShell en Windows):
+
+1. Creación de solución: `dotnet new sln -n DevSecOpsDemo`
+2. Creación de proyecto API: `dotnet new web -n DevSecOpsDemo.Api`
+3. Adición a solución: `dotnet sln add DevSecOpsDemo.Api/DevSecOpsDemo.Api.csproj`
+4. Adición de paquete Swagger: `dotnet add DevSecOpsDemo.Api package Swashbuckle.AspNetCore`
+5. Creación de proyecto de pruebas: `dotnet new xunit -n DevSecOpsDemo.Tests`
+6. Adición a solución: `dotnet sln add DevSecOpsDemo.Tests/DevSecOpsDemo.Tests.csproj`
+7. Adición de referencia: `dotnet add DevSecOpsDemo.Tests/DevSecOpsDemo.Tests.csproj reference DevSecOpsDemo.Api/DevSecOpsDemo.Api.csproj`
+8. Adición de paquete testing: `dotnet add DevSecOpsDemo.Tests package Microsoft.AspNetCore.Mvc.Testing`
+9. Ejecución de pruebas (múltiples veces hasta éxito): `dotnet test`
+10. Verificación de Git: `git status`, `git remote -v`
+11. Commits: `git add .`, `git commit -m "API creada"`, `git commit -m "Pipeline de CI agregada"`
+12. Pushes: `git push origin main` (dos veces)
+13. Creación de directorio: `mkdir -p .github/workflows`
+
+Todas las ejecuciones se completaron sin errores críticos, con ajustes iterativos para resolver problemas de compilación y pruebas.
+
+---
+
+## Pruebas/Test Ejecutadas
+
+Se implementaron y ejecutaron pruebas de integración usando xUnit y WebApplicationFactory. Las pruebas validan el comportamiento de la API:
+
+1. **GetHealth_ReturnsOkWithStatus**:
+   - Envía GET a /api/health.
+   - Verifica código HTTP 200.
+   - Verifica que el JSON contenga {"status": "ok"}.
+
+2. **PostSuma_ValidInput_ReturnsSum**:
+   - Envía POST a /api/suma con {"A": 5, "B": 3}.
+   - Verifica código HTTP 200.
+   - Verifica que el JSON contenga {"result": 8}.
+
+3. **PostSuma_InvalidInput_ReturnsBadRequest**:
+   - Envía POST a /api/suma con {"A": 5} (falta B).
+   - Verifica código HTTP 400.
+   - Verifica que el JSON contenga {"error": "Invalid request body"}.
+
+4. **PostSuma_NullBody_ReturnsBadRequest**:
+   - Envía POST a /api/suma con body vacío (StringContent vacío).
+   - Verifica código HTTP 400.
+   - Verifica que el JSON contenga {"error": "Invalid request body"}.
+
+**Resultado de Ejecución**: Todas las pruebas pasaron (4/4 correctas, 0 errores). Se ejecutaron en modo Release tras ajustes para manejar excepciones de deserialización.
+
+---
+
+Esta documentación asegura la trazabilidad de las contribuciones de la IA y el cumplimiento de las instrucciones originales.
