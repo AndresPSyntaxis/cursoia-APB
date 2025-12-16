@@ -1,0 +1,93 @@
+##Instrucciones Arquitectura
+1.Creacion del proyecto API
+-Crea una Minimal API
+-Nombre: DevSecOpsDemo.Api
+-Habilitar OpenAPI/Swagger
+-Usar enfoque Minimal API 
+
+##Objetivos 
+1. Diseñar y exponer endpoints REST simples en una minimal API .NET.
+2. Implementar pruebas de integración que validen el comportamiento de la API.
+3. Crear un workflow de CI que ejecute dotnet test en cada cambio.
+4. Repositorio Conectado con Github.
+5. Documentar todo el aporte que implemenet la IA y Correcciones.
+
+##Construccion de la API
+
+1-Crea una solución con un proyecto minimal API .NET (C#)
+	Nombre de Proyecto : DevSecOpsDemo.Api
+
+2-Diseña e implementa dos endpoints:
+
+• GET /api/health
+	- Debe responder con un JSON indicando que el servicio está “ok”.
+	- Debe usar un código HTTP adecuado para éxito.
+• POST /api/suma
+	- Debe recibir un body JSON con dos números enteros (por ejemplo A y B).
+	
+* Si el body es válido, debe devolver:
+	· Código de éxito.
+	· Un JSON con el resultado de la suma.
+* Si el body es inválido o nulo, debe devolver:
+	· Un código HTTP de error del cliente.
+	· Un mensaje de error en el body.
+
+##Ejecucion Pruebas 
+
+1. Agrega un proyecto de pruebas xUnit a la solución, con nombre sugerido:
+	DevSecOpsDemo.Tests
+	
+2. Configura el proyecto de pruebas para poder levantar la API en memoria y hacer
+		peticiones a sus endpoints (por ejemplo, usando WebApplicationFactory u otra estrategia equivalente de pruebas de integración).
+		
+3. Implementa al menos las siguientes pruebas:
+	• Prueba para GET /api/health:
+		- Verificar que devuelve el código HTTP correcto.
+		- Verificar que el body contiene la información de “status” esperada.
+	• Prueba para POST /api/suma – caso exitoso:
+		- Enviar dos números válidos.
+		- Verificar código HTTP correcto.
+		- Verificar que el resultado de la suma es correcto en el body.
+	• Prueba para POST /api/suma – caso inválido:
+		- Enviar body nulo o inválido.
+		- Verificar que se devuelve el código HTTP de error correcto.
+		- Verificar que se retorna un mensaje de error acorde.
+		
+4. Ejecuta las pruebas localmente y asegúrate de que todas pasen en verde
+
+*Adicionales
+	• Proponer casos de prueba adicionales,
+	• sugerir la estructura del proyecto de tests,
+	• depurar cuando una prueba falle.
+	• Guarda el prompt y la respuesta como evidencia
+	
+##Git y Repositorio
+*El repositorio esta conectado a GitHub con el repositorio local
+
+1. Crea al menos un commit significativo, por ejemplo:
+	• API creada.
+	• Tests agregados.
+	
+2. Haz un Push al remoto
+
+##Pipeline de CI
+
+1. Crea la estructura para un workflow de CI:
+	• Carpeta: .github/workflows/
+	• Archivo dentro: por ejemplo ci.yml.
+2. Configura un workflow que:
+	• Ejecute en cada push y pull request hacia la rama principal (master o main, según tu configuración).
+	• Use un runner Linux (por ejemplo ubuntu-latest).
+	• Realice, como mínimo, estos pasos:
+		- Checkout del código.
+		- Instalación de la versión de .NET adecuada.
+		- Restaurar dependencias (dotnet restore).
+		- Compilar el proyecto en modo Release (dotnet build).
+		- Ejecutar las pruebas (dotnet test).
+3. Haz un nuevo commit incluyendo el archivo del workflow y realiza push para activar el pipeline.
+4. En la interfaz de GitHub, verifica que:
+	• El workflow se ejecutó.
+	• Los pasos de build y test pasaron correctamente.
+	
+*Genera un primer borrador del archivo de workflow (YAML)
+                    
