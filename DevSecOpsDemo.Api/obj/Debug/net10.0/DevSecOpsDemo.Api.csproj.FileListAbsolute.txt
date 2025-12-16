@@ -33,3 +33,4 @@ C:\Users\Equipo\Desktop\curso ia\Modulo3\cursoia-APB\DevSecOpsDemo.Api\obj\Debug
 C:\Users\Equipo\Desktop\curso ia\Modulo3\cursoia-APB\DevSecOpsDemo.Api\obj\Debug\net10.0\DevSecOpsDemo.Api.pdb
 C:\Users\Equipo\Desktop\curso ia\Modulo3\cursoia-APB\DevSecOpsDemo.Api\obj\Debug\net10.0\DevSecOpsDemo.Api.genruntimeconfig.cache
 C:\Users\Equipo\Desktop\curso ia\Modulo3\cursoia-APB\DevSecOpsDemo.Api\obj\Debug\net10.0\ref\DevSecOpsDemo.Api.dll
+C:\Users\Equipo\Desktop\curso ia\Modulo3\cursoia-APB\DevSecOpsDemo.Api\obj\Debug\net10.0\DevSecOpsDemo.Api.sourcelink.json
